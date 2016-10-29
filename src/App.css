@@ -1,0 +1,15 @@
+.app-navbar{
+    border-radius:0;
+}
+.item-list,
+.item-details{
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    height: calc(100vh - 54px);
+}
+.item-list *{
+    border-radius: 0!important;
+}
+img{
+    max-width: 100%;
+}
