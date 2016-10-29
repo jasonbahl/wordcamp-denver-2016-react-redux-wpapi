@@ -6,6 +6,7 @@ import './App.css';
 
 import NavBar from './components/NavBar';
 import ArticleList from './components/ArticleList';
+import ArticleDetail from './components/ArticleDetail';
 
 class App extends Component {
 
@@ -28,12 +29,7 @@ class App extends Component {
                                 <div className="row m-t-1 p-r-3 p-l-3 p-b-3">
                                     <div className="col-sm-12">
 
-                                        <div>
-						                    <h1>Article Title</h1>
-						                    <h4 className="small">November 5, 2016</h4>
-						                    <hr/>
-						                    <div>This is the full article content</div>
-						                </div>
+                                        <ArticleDetail />
 
                                     </div>
                                 </div>
