@@ -35,4 +35,7 @@ function mapStateToProps( state ) {
 	}
 }
 
+/**
+ * Export the component, connected with the defined Redux state
+ */
 export default connect( mapStateToProps )(ArticlePreview);
