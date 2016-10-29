@@ -2,10 +2,14 @@
   "name": "wordcamp-2016",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://jasonbah.github.io/wordcamp-denver-2016-react-redux-wpapi",
   "devDependencies": {
+    "gh-pages": "^0.11.0",
     "react-scripts": "0.6.1"
   },
   "dependencies": {
+    "axios": "^0.15.2",
+    "bootstrap": "^4.0.0-alpha.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
@@ -13,6 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build&&gh-pages -d build"
   }
 }
