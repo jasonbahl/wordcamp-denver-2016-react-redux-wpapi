@@ -13,8 +13,6 @@ class ArticlePreview extends Component {
 		// Get the settings from the connected Redux store
 		let { settings } = this.props;
 
-		console.log( settings );
-
 		return(
 			<a href="#" className="list-group-item list-group-item-action">
 
