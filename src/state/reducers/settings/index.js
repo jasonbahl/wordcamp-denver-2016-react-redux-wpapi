@@ -1,4 +1,11 @@
 /**
+ * Import the action types
+ */
+import {
+    SETTINGS_UPDATE_SETTING
+} from '../../action-types';
+
+/**
  * This sets up the shape of the "settings" subtree of the redux store when the
  * app is first initialized.
  */
@@ -35,6 +42,17 @@ function settings( state = initialState, action ) {
 
 	switch ( action.type ) {
 
+		/**
+		 * For the action type SETTINGS_UPDATE_SETTING
+		 *
+		 * This updates the setting with the value that was passed in the action
+		 */
+		case SETTINGS_UPDATE_SETTING:
+            return Object.assign({}, state, {
+                [action.key]: action.value
+            });
+
+		// If the action.type doesn't match, return the unaltered state
 		default:
 			return state;
 
