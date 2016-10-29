@@ -1,48 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import App from './App';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-import NavBar from './components/NavBar';
-import ArticleList from './components/ArticleList';
-import ArticleDetail from './components/ArticleDetail';
+import configureStore from './state';
 
-class App extends Component {
+/**
+ * Create the Redux store
+ */
+const store = configureStore();
 
-	render() {
-
-		return(
-			<div>
-
-                <NavBar />
-
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-sm-4 p-l-0 p-r-0">
-
-                            <ArticleList />
-
-                        </div>
-                        <div className="col-sm-8 p-r-0">
-                            <div className="item-details">
-                                <div className="row m-t-1 p-r-3 p-l-3 p-b-3">
-                                    <div className="col-sm-12">
-
-                                        <ArticleDetail />
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-		)
-
-	}
-
-}
-
-ReactDOM.render( <App />, document.getElementById('app'));
+/**
+ * Render the app to <div id="app"></div>
+ *
+ * The <Provider> is what connects the <App> to the Redux store
+ * to allow data to be accessed by any component in the App
+ *
+ */
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+    </Provider>,
+    document.getElementById('app')
+);
