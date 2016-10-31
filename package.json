@@ -10,8 +10,10 @@
   "dependencies": {
     "axios": "^0.15.2",
     "bootstrap": "4.0.0-alpha.4",
+    "lodash": "^4.16.4",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "reselect": "^2.5.4"
   },
   "scripts": {
     "start": "react-scripts start",
