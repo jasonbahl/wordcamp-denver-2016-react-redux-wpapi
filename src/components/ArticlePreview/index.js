@@ -6,20 +6,45 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import classNames from 'classnames';
+import moment from 'moment';
+import 'moment-timezone';
+
+import * as articleActions from '../../state/actions/articles';
 
 class ArticlePreview extends Component {
+
+	handleClickItem( uniqueId ) {
+
+		// Get date from the props
+		let { articleActions } = this.props;
+
+		// Set the active article
+		articleActions.setActiveArticle( uniqueId );
+
+	}
+
 	render() {
 
 		// Get the settings from the connected Redux store
-		let { settings } = this.props;
+		let { article, active, settings } = this.props;
+
+		let itemClass = classNames({
+			'list-group-item': true,
+			'list-group-item-action': true,
+			'active': ( article.uniqueIndex === active ) ? true : false
+		});
+
+		let date = ( article.date ) ? moment( article.date_gmt ).tz( article.timezone ).format('MM/DD/YYYY h:mm a z') : '';
 
 		return(
-			<a href="#" className="list-group-item list-group-item-action">
+			<a href="#" className={itemClass} onClick={this.handleClickItem.bind( this, article.uniqueIndex ) }>
 
 				{ (settings.showSite) ? <h4 className="list-group-item-text p-t-1 p-b-1 small">Site 1</h4> : '' }
-                <h5 className="list-group-item-heading">Article Title</h5>
-                { ( settings.showDate ) ? <h4 className="list-group-item-text p-t-1 small">November 5, 2016</h4> : '' }
-                { ( settings.showExcerpt ) ? <p className="list-group-item-text p-t-1">This is the article excerpt</p> : '' }
+                <h5 className="list-group-item-heading" dangerouslySetInnerHTML={{ __html: article.title.rendered }} />
+                { ( settings.showDate ) ? <h4 className="list-group-item-text p-t-1 small" dangerouslySetInnerHTML={{__html: date }}/> : '' }
+                { ( settings.showExcerpt ) ? <p className="list-group-item-text p-t-1"  dangerouslySetInnerHTML={{__html: article.excerpt.rendered}} /> : '' }
 
             </a>
 		)
@@ -35,7 +60,13 @@ function mapStateToProps( state ) {
 	}
 }
 
+function mapDispatchToProps( dispatch ){
+	return {
+		articleActions: bindActionCreators( articleActions, dispatch )
+	}
+}
+
 /**
  * Export the component, connected with the defined Redux state
  */
-export default connect( mapStateToProps )(ArticlePreview);
+export default connect( mapStateToProps, mapDispatchToProps )(ArticlePreview);
