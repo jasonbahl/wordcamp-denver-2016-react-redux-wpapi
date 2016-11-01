@@ -1,3 +1,8 @@
+import {
+    SITE_SET_ACTIVE
+} from '../../action-types';
+
+
 /**
  * This sets up the shape of the "sites" subtree of the redux store when the
  * app is first initialized.
@@ -44,6 +49,11 @@ const initialState = {
 function sites( state = initialState, action ) {
 
 	switch ( action.type ) {
+
+        case SITE_SET_ACTIVE:
+            return Object.assign({}, state, {
+                activeSite: action.site
+            });
 
 		default:
 			return state;
