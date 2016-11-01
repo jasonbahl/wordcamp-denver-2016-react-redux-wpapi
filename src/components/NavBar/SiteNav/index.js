@@ -6,17 +6,6 @@ import * as siteActions from '../../../state/actions/sites';
 
 class SiteNav extends Component {
 
-	componentDidMount(){
-		let { sites, siteActions } = this.props;
-		sites.items.map( ( site, i ) => {
-
-			if ( 3 === site.id ) {
-				siteActions.setActive(site);
-			}
-
-		});
-	}
-
 	handleNavClick( site ) {
 
 		let { siteActions } = this.props;
