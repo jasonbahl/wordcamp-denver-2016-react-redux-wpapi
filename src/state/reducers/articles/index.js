@@ -1,3 +1,10 @@
+import {
+	ARTICLE_SET_ACTIVE,
+	ARTICLES_REQUEST,
+	ARTICLES_RECEIVE,
+	ARTICLES_REQUEST_FAILURE
+} from '../../action-types';
+
 /**
  * This sets up the shape of the "articles" subtree of the redux store when the
  * app is first initialized.
@@ -18,14 +25,39 @@ const initialState = {
  *
  * Note: All reducer functions should be "pure" and "immutable"
  */
-function articles( state = initialState, action ) {
+export default function articles( state = initialState, action ) {
 
 	switch ( action.type ) {
+
+		case ARTICLES_REQUEST:
+
+			return Object.assign({}, state, {
+				isFetching: true
+			});
+
+		case ARTICLES_RECEIVE:
+
+			return Object.assign({}, state, {
+				items: [ ...state.items, ...action.articles ]
+			});
+
+		case ARTICLES_REQUEST_FAILURE:
+
+			return Object.assign({}, state, {
+				isFetching: false,
+				error: [ ...state.errors, ...action.error ]
+			});
+
+		case ARTICLE_SET_ACTIVE:
+
+			return Object.assign({}, state, {
+				isFetching: false,
+				activeArticle: action.activeArticle
+			});
 
 		default:
 			return state;
 
 	}
-}
 
-export default articles;
+}
